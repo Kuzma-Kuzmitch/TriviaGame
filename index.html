@@ -15,22 +15,11 @@
 
     <div class="container mx-auto mt-5 mb-5 text-center border border-dark" id="questionOverlay">
 
-      <!-- <h1>Trivia</h1>
-      <h3>Time left: <span class="countDown"></span> seconds </h3>
-      <button type="button" class="startCount" name="button">Start</button>
-      <button type="button" class="stopCount" name="button">Stop</button>
-      <button type="button" class="resetCount" name="button">Reset</button> -->
-
 
       <h1 class="font-weight-bold mt-5 mb-2 pt-5">Well met!</h1>
       <h2 class="font-weight-bold mt-4">A quick question:</h2>
-      <h3 class="font-weight-bold mb-5 question"></h3>
-      <!-- <div class="mx-auto mt-5 mb-3 text-center bg-white border d-none" id="answerOverlay">
-        <h1 class="font-weight-bold mt-5 mb-4" id="answerDisplay"></h1>
-        <h4 class="font-weight-bold mt-5 mb-4" id="answerText"></h4>
-        <div id="answerImage" class="mt-2"></div>
-      </div> -->
-
+      <h3 class="font-weight-bold question"></h3>
+      <h4 class="font-weight-bold mb-5" id="seconds"></h4>
       <div id="answerButtons" class="mb-5"></div>
 
 
@@ -38,8 +27,16 @@
 
     <div class="container mx-auto mt-5 mb-5 text-center border border-dark bg-white d-none" id="answerOverlay">
       <h1 class="font-weight-bold mb-4 pt-5" id="answerDisplay"></h1>
-      <h4 class="font-weight-bold mt-5 mb-4" id="answerText"></h4>
+      <h4 class="font-weight-bold mt-5 mb-4 font-italic" id="answerText"></h4>
       <div id="answerImage" class="mt-2 mb-5"></div>
+    </div>
+
+    <div class="container mx-auto mt-5 mb-5 text-center border border-dark bg-white makeDark" id="endScreen">
+      <h1 class="font-weight-bold mb-4 pt-5">Well done!</h1>
+      <h3 class="font-weight-bold mt-5 mb-4 font-italic">Let's see how you did.</h3>
+      <h5 class="font-weight-bold mb-4 pt-5">You answered <span id="correctChoices"></span> question(s)
+      correctly out of <span id="numberQuestions"></span>. You got a <span id="percentRight"></span>%</h5>
+
     </div>
 
   </body>

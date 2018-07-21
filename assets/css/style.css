@@ -1,6 +1,6 @@
 #answerOverlay {
   z-index: 1;
-  background-image: url("https://www.wallpaperboulevard.com/Images/product/0024393_brown-scroll-texture.jpeg");
+  background-image: url("https://www.wallcovering-wallpaper.com/images/products/96-FG257024_z.jpg");
   /* position: relative; */
 }
 
@@ -19,5 +19,9 @@ background-size: cover;
 }
 
 #questionOverlay {
-  background-image: url("https://www.wallpaperboulevard.com/Images/product/0024393_brown-scroll-texture.jpeg");
+  background-image: url("https://www.wallcovering-wallpaper.com/images/products/96-FG257024_z.jpg");
+}
+
+#endScreen {
+  background-image: url("https://www.wallcovering-wallpaper.com/images/products/96-FG257024_z.jpg");
 }

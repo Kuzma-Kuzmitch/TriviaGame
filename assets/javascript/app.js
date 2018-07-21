@@ -50,9 +50,30 @@ $(document).ready(function() {
     wrongImage: ["https://media0.giphy.com/media/9rlxnqv2LLMtYos7SH/source.gif"],
   }
 
-  var questionArray = [question1, question2, question3, question4, question5]
+  var question6 = {
+    question: "The Frozen Throne is located on which continent?",
+    answers: ["Kalimdor", "The Maelstorm", "Northrend", "Eastern Kingdoms"],
+    correct: 2,
+    correctText: "I will show you the justice of the grave.",
+    correctImage: ["https://media0.giphy.com/media/piTF2qfkyjpG4EB5Kk/source.gif"],
+    wrongImage: ["https://thumbs.gfycat.com/WhirlwindAcrobaticAsiaticlesserfreshwaterclam-size_restricted.gif"],
+  }
+
+  var question7 = {
+    question: "What did Victor Quinn main in WoW?",
+    answers: ["Not a Balance Druid", "A Balance Druid", "Not a Balance Druid", "Not a Balance Druid"],
+    correct: 1,
+    correctText: "Had to google that one didn't you?",
+    correctImage: ["https://pbs.twimg.com/profile_images/458798938456215552/QvUoJDEi_400x400.jpeg"],
+    wrongImage: ["https://media1.tenor.com/images/5b013bbf6800ebc29198b8d4d806d3f3/tenor.gif?itemid=5481137"],
+  }
+
+  var questionArray = [question1, question2, question3, question4, question5, question6, question7]
   var currentQuestionNumber = 0
   var currentQuestion = questionArray[currentQuestionNumber]
+  var secondCount = 15
+  var holdInterval
+  var numberRight = 0
 
 
 
@@ -78,11 +99,13 @@ $(document).ready(function() {
       $(".question").text(currentQuestion.question)
       for (var i = 0; i < currentQuestion.answers.length; i++) {
         var a = $("<button>");
-        a.addClass("btn btn-link btn-lg btn-block answer");
+        a.addClass("btn btn-link btn-lg btn-block text-dark answer");
         a.attr("value", i);
         a.text(currentQuestion.answers[i]);
         $("#answerButtons").append(a);
     }
+    resetCount()
+    holdInterval = setInterval(decrement, 1000)
     $(".answer").on("click", checkAnswer)
     console.log(currentQuestion.correct)
   }
@@ -109,6 +132,7 @@ $(document).ready(function() {
    currentQuestion = questionArray[currentQuestionNumber]
    console.log(currentQuestionNumber)
    console.log(currentQuestion)
+   numberRight+= 1
  }
 
  function wrongAnswer() {
@@ -124,130 +148,32 @@ $(document).ready(function() {
 
  function youWin() {
    alert("You win!")
+   clearInterval(holdInterval)
+   $("#questionOverlay").addClass("makeDark")
+   $("#answerOverlay").removeClass("d-block").addClass("d-none")
+   $("#endScreen").removeClass("makeDark")
+   var totalQuestions = questionArray.length
+   var average = Math.floor((numberRight/totalQuestions) * 100)
+   $("#correctChoices").text(numberRight)
+   $("#numberQuestions").text(totalQuestions)
+   $("#percentRight").text(average)
+ }
+
+ function decrement() {
+   secondCount-= 1
+   $("#seconds").text(secondCount)
+   if (secondCount == 0) {
+     wrongAnswer()
+     setTimeout(loadQuestion, 3000)
+   }
+ }
+
+ function resetCount() {
+   secondCount = 15
+   clearInterval(holdInterval)
+  $("#seconds").text(secondCount)
  }
 
  loadQuestion()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // var numberCount = 30
-  // var holdInterval
-  //
-  // $(".countDown").text(numberCount)
-  // $(".startCount").on("click", start)
-  // $(".stopCount").on("click", stop)
-  // $(".resetCount").on("click", reset)
-  //
-  // function decrement() {
-  //
-  //   numberCount--
-  //
-  //   $(".countDown").text(numberCount)
-  //
-  // }
-  //
-  // function start() {
-  //   clearInterval(holdInterval)
-  //   holdInterval = setInterval(decrement, 1000)
-  // }
-  //
-  // function stop() {
-  //   clearInterval(holdInterval)
-  // }
-  //
-  // function reset() {
-  //   clearInterval(holdInterval)
-  //   numberCount = 30
-  //   $(".countDown").text(numberCount)
-  // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 });
