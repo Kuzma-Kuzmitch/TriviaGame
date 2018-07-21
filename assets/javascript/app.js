@@ -147,7 +147,7 @@ $(document).ready(function() {
  }
 
  function youWin() {
-   alert("You win!")
+   alert("Game over!")
    clearInterval(holdInterval)
    $("#questionOverlay").addClass("makeDark")
    $("#answerOverlay").removeClass("d-block").addClass("d-none")
