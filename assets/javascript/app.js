@@ -174,6 +174,15 @@ $(document).ready(function() {
   $("#seconds").text(secondCount)
  }
 
+ $("#playAgain").on("click", function(){
+   $("#questionOverlay").removeClass("makeDark")
+   $("#answerOverlay").removeClass("d-block").addClass("d-none")
+   $("#endScreen").addClass("makeDark")
+   currentQuestionNumber = 0
+   loadQuestion()
+ })
+
+
  loadQuestion()
 
 });
