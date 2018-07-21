@@ -1,0 +1,23 @@
+#answerOverlay {
+  z-index: 1;
+  background-image: url("https://www.wallpaperboulevard.com/Images/product/0024393_brown-scroll-texture.jpeg");
+  /* position: relative; */
+}
+
+#answerButtons {
+  z-index: -1
+}
+
+.makeDark {
+  display: none;
+}
+
+body {
+font-family: 'Cinzel', serif;
+background-image: url("https://www.imgbase.info/images/safe-wallpapers/miscellaneous/fantasy/52058_fantasy_fantasy_landscape.jpg");
+background-size: cover;
+}
+
+#questionOverlay {
+  background-image: url("https://www.wallpaperboulevard.com/Images/product/0024393_brown-scroll-texture.jpeg");
+}

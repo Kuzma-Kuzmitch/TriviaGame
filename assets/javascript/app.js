@@ -65,33 +65,68 @@ $(document).ready(function() {
 
   function loadQuestion() {
     currentQuestion = questionArray[currentQuestionNumber]
-    $("#answerButtons").empty()
-    $("#answerImage").empty()
-    $(".question").text(currentQuestion.question)
-    for (var i = 0; i < currentQuestion.answers.length; i++) {
-      var a = $("<button>");
-      a.addClass("btn btn-primary btn-lg btn-block answer");
-      a.attr("value", i);
-      a.text(currentQuestion.answers[i]);
-      $("#answerButtons").append(a);
-      $(".answer").on("click", checkAnswer)
+    if (currentQuestionNumber === questionArray.length) {
+      youWin()
+    }
+    else {
+      $("#questionOverlay").removeClass("makeDark")
+      $("#answerOverlay").removeClass("d-block").addClass("d-none")
+      $("#answerButtons").empty()
+      $("#answerImage").empty()
+      $("#answerDisplay").empty()
+      $("#answerText").empty()
+      $(".question").text(currentQuestion.question)
+      for (var i = 0; i < currentQuestion.answers.length; i++) {
+        var a = $("<button>");
+        a.addClass("btn btn-link btn-lg btn-block answer");
+        a.attr("value", i);
+        a.text(currentQuestion.answers[i]);
+        $("#answerButtons").append(a);
+    }
+    $(".answer").on("click", checkAnswer)
+    console.log(currentQuestion.correct)
   }
 }
 
   function checkAnswer() {
-    if ($(this).attr("value") == currentQuestion.correct) {
-    $("#answerImage").html("<img src=" + currentQuestion.correctImage[0] + " width='400px'>")
-    currentQuestionNumber++
-    setTimeout(loadQuestion(), 1000)
+    if ($(this).attr("value") === "" + currentQuestion.correct + "") {
+    correctAnswer()
+    setTimeout(loadQuestion, 3000)
   }
   else {
-    $("#answerImage").html("<img src=" + currentQuestion.wrongImage[0] + " width='400px'>")
-    currentQuestionNumber++
+    wrongAnswer()
     setTimeout(loadQuestion, 3000)
   }
 }
 
-  loadQuestion()
+ function correctAnswer() {
+   $("#answerOverlay").removeClass("d-none").addClass("d-block")
+   $("#questionOverlay").addClass("makeDark")
+   $("#answerImage").html("<img src=" + currentQuestion.correctImage[0] + " width='400px'>")
+   $("#answerDisplay").text("Correct!")
+   $("#answerText").text(currentQuestion.correctText)
+   currentQuestionNumber+= 1
+   currentQuestion = questionArray[currentQuestionNumber]
+   console.log(currentQuestionNumber)
+   console.log(currentQuestion)
+ }
+
+ function wrongAnswer() {
+   $("#answerOverlay").removeClass("d-none").addClass("d-block")
+   $("#questionOverlay").addClass("makeDark")
+   $("#answerImage").html("<img src=" + currentQuestion.wrongImage[0] + " width='400px'>")
+   $("#answerDisplay").text("Wrong!")
+   currentQuestionNumber+= 1
+   currentQuestion = questionArray[currentQuestionNumber]
+   console.log(currentQuestionNumber)
+   console.log(currentQuestion)
+ }
+
+ function youWin() {
+   alert("You win!")
+ }
+
+ loadQuestion()
 
 
 
@@ -118,33 +153,6 @@ $(document).ready(function() {
 
 
 
-
-
-  // var queAndAns = {
-  //   "From what Clan is Thrall?": ["Frostwolf", "Warsong", "Shadowmoon", "Blackfoot"],
-  //   "Who mentored Arthas?": ["Tirion Fordring", "Uther the Lightbringer", "Bolvar Fordragon", "Anduin Lothar"],
-  //   "Sylvanas comes from which Elven family?": ["Windrunner", "Stormrage", "Sunstrider", "Whisperwind"],
-  //   "Ironforge is home to which Race?": ["Dwarves", "Gnomes", "Humans", "Orcs"],
-  //   "Outland is the remnants of what planet?": ["Draenor", "Arrakis", "Hoth", "Dagobah"],
-  //
-  // }
-  //
-  // var queNumber = Math.floor(Math.random() * (Object.keys(queAndAns).length))
-  //
-  // console.log(queNumber)
-  //
-  //
-  // console.log(Object.values(queAndAns)[queNumber])
-  //
-  // $(".question").text(Object.keys(queAndAns)[queNumber])
-  //
-  // for (var i = 0; i < (Object.values(queAndAns)[queNumber]).length; i++) {
-  //   var a = $("<button>");
-  //   a.addClass("btn btn-primary btn-lg btn-block answer");
-  //   a.attr("value", i);
-  //   a.text(Object.values(queAndAns)[queNumber][i]);
-  //   $("#answerButtons").append(a);
-  // }
 
 
 
